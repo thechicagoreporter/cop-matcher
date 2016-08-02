@@ -1,0 +1,133 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'cops/style.css' %}" />
+
+
+
+<h1>Unidentified civil suit cops</h2>
+<table class="unidd">
+    <tr>
+        <th>
+            Record ID 
+        </th>
+        <th>
+            Case number
+        </th>
+        <th>
+            Badge number
+        </th>
+        <th>
+            Last name 
+        </th>
+        <th>
+            First name, MI
+        </th>
+        <th>
+            Entered by 
+        </th>
+        <th>
+            Flagged
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    {% for casecop in unIDd_case_cops %}
+    <tr>
+        <td>
+                {{ casecop.id }}
+        </td>
+        <td>
+                {{ casecop.case.case_no }}
+        </td>
+        <td>
+            {{ casecop.badge_no }}
+        <td>
+            {{ casecop.cop_last_name }}
+        </td>
+        <td>
+            {{ casecop.cop_first_name }} {{ casecop.cop_middle_initial }}
+        </td>
+        <td>
+            {{ casecop.entered_by }}
+        </td>
+        <td>
+            {%if casecop.flag %}{{ casecop.flag }}{% endif %}
+        </td>
+        <td>
+            <a href = "{{casecop.id}}">Match</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h1>Identified civil suit cops</h1>
+<table class="idd">
+    <tr>
+        <th>
+            Record ID 
+        </th>
+        <th>
+            Case number
+        </th>
+        <th>
+            Badge number
+        </th>
+        <th>
+            Last name 
+        </th>
+        <th>
+            First name, MI
+        </th>
+        <th>
+            Cop
+        </th>
+        <th>
+            ID'd by:
+        </th>
+        <!--<th>
+            ID timestamp
+        </th>-->
+        <th>
+            Flagged
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    {% for casecop in IDd_case_cops %}
+    <tr>
+        <td>
+                {{ casecop.id }}
+        </td>
+        <td>
+                {{casecop.case.case_no}}
+        </td>
+        <td>
+            {{ casecop.badge_no }}
+        </td>
+        <td>
+            {{casecop.cop_last_name}}
+        </td>
+        <td>
+            {{casecop.cop_first_name}} {{casecop.cop_middle_initial}}
+        </td>
+        <td>
+            {{casecop.cop.star_nos}} <br />{{casecop.cop.last_name|title}}, {{casecop.cop.first_name|title}} {{casecop.cop.middle_init|title}}<br />{{casecop.cop.position_desc }} 
+        </td>
+        <td>
+            {{casecop.matched_by}}
+        </td>
+        <!--<td>
+            {{casecop.matched_when}}
+        </td>-->
+        <td>
+            {% if casecop.flag %}{{ casecop.flag }}{% endif %}
+        </td>
+        <td>
+            <a href = "{{casecop.id}}">Re-match</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+

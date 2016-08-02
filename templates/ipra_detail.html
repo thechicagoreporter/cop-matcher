@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'cops/style.css' %}" />
+
+<h1>Match IPRA cop record #{{ ipracop.id }}</h1>
+
+<h2>Details</h2>
+<table>
+    <tr>
+        <td class="dlabel">CR number</td>
+        <td>{{ipracop.cr_no}}</td>
+    </tr>
+    <tr>    
+        <td class="dlabel">Incident date</td>
+        <td>{{ ipracop.case.incident_date| date:"N j, Y" }}</td>
+    </tr>
+    <tr>    
+        <td class="dlabel">Address</td>
+        <td>{{ ipracop.case.address }}</td>
+    <tr>    
+    <tr>    
+        <td class="dlabel">Location</td>
+        <td>{{ ipracop.case.location }}</td>
+    </tr>
+    <tr>    
+        <td class="dlabel cop">Cop last name</td>
+        <td class="cop">{{ ipracop.cop_last_name }}</td>
+    </tr>
+    <tr>    
+        <td class="dlabel cop">Cop first name</td>
+        <td class="cop">{{ ipracop.cop_first_name }} </td>
+    </tr>
+    <tr>    
+        <td class="dlabel cop">Badge number</td>
+        <td class="cop">{{ ipracop.badge_no }}</td>
+    </tr>
+
+   
+    
+    
+</table>
+
+<h2>Update</h2>
+
+
+{% if ipracop.cop %}
+    <div class="match-record">
+        Matched by {{ ipracop.matched_by }} {{ ipracop.matched_when| date:"N j, Y" }}
+    </div>
+{% endif %}
+
+
+<form action="#" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <br /><input type="submit" value="Submit" />
+</form>
+
+{% if saved == True %}
+<h2>Saved.</h2>
+{% endif %}
+
+
+<a href="{{next_id}}">Next case to do >>></a>
+<br />
+<br />
+<br />
+<a href="/ipra_cases/"><<< Back to case listing</a>

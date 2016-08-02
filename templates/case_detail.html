@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'cops/style.css' %}" />
+
+<h1>Match case-cop record #{{ casecop.id }}</h1>
+
+<h2>Details</h2>
+<table>
+    <tr>
+        <td class="dlabel">Case number</td>
+        <td>{{casecop.case_no}}</td>
+    </tr>
+    <tr>    
+        <td class="dlabel">Incident date</td>
+        <td>{{ casecop.case.incident_date }}</td>
+    </tr>
+    <tr>    
+        <td class="dlabel">Address</td>
+        <td>{{ casecop.case.address }}</td>
+    <tr>    
+    <tr>    
+        <td class="dlabel">Location</td>
+        <td>{{ casecop.case.location }}</td>
+    </tr>
+    <tr>    
+        <td class="dlabel">Entered by</td>
+        <td>{{ casecop.entered_by }} - {{casecop.entered_when|date:"M d Y"}}</td>
+    </tr>
+    <tr>    
+        <td class="dlabel cop">Cop last name</td>
+        <td class="cop">{{ casecop.cop_last_name }}</td>
+    </tr>
+    <tr>    
+        <td class="dlabel cop">Cop first, middle names</td>
+        <td class="cop">{{ casecop.cop_first_name }} {{ casecop.cop_middle_init }}</td>
+    </tr>
+    <tr>    
+        <td class="dlabel cop">Badge number</td>
+        <td class="cop">{{ casecop.badge_no }}</td>
+    </tr>
+
+   
+    
+    
+</table>
+
+<h2>Update</h2>
+
+
+{% if casecop.cop %}
+    <div class="match-record">
+        Matched by {{ casecop.matched_by }} {{ casecop.matched_when| date:"M d Y" }}
+    </div>
+{% endif %}
+
+
+<form action="#" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <br /><input type="submit" value="Submit" />
+</form>
+
+{% if saved == True %}
+<h2>Saved.</h2>
+{% endif %}
+
+
+<a href="{{next_id}}">Next case to do >>></a>
+<br />
+<br />
+<br />
+<a href="/cases/"><<< Back to case listing</a>

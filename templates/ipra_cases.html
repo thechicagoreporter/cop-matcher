@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'cops/style.css' %}" />
+
+
+
+<h1>Unidentified IPRA Cops</h2>
+<table class="unidd">
+    <tr>
+        <th>
+            Record ID 
+        </th>
+        <th>
+            CR number
+        </th>
+        <th>
+            Badge number
+        </th>
+        <th>
+            Last name 
+        </th>
+        <th>
+            First name
+        </th>
+        <th>
+            Flagged
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    {% for ipracop in unIDd_ipra_cops %}
+    <tr>
+        <td>
+                {{ ipracop.id }}
+        </td>
+        <td>
+                {{ ipracop.case.cr_no }}
+        </td>
+        <td>
+            {{ ipracop.badge_no }}
+        </td>
+        <td>
+            {{ ipracop.cop_last_name }}
+        </td>
+        <td>
+            {{ ipracop.cop_first_name }} 
+        </td>
+        <td>
+            {%if ipracop.flag %}{{ ipracop.flag }}{% endif %}  
+        </td>
+        <td>
+            <a href = "{{ipracop.id}}">Match</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h1>Identified IPRA cops</h1>
+<table class="idd">
+    <tr>
+        <th>
+            Record ID 
+        </th>
+        <th>
+            Case number
+        </th>
+        <th>
+            Badge number
+        </th>
+        <th>
+            Last name 
+        </th>
+        <th>
+            First name
+        </th>
+        <th>
+            Cop
+        </th>
+        <th>
+            ID'd by:
+        </th>
+        <!--<th>
+            ID timestamp
+        </th>-->
+        <th>
+            Flagged
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    {% for ipracop in IDd_ipra_cops %}
+    <tr>
+        <td>
+                {{ ipracop.id }}
+        </td>
+        <td>
+                {{ipracop.case.cr_no}}
+        </td>
+        <td>
+            {{ ipracop.badge_no }}
+        </td>
+        <td>
+            {{ipracop.cop_last_name}}
+        </td>
+        <td>
+            {{ipracop.cop_first_name}}
+        </td>
+        <td>
+            {{ipracop.cop.star_nos}} <br />{{ipracop.cop.last_name|title}}, {{ipracop.cop.first_name|title}} <br />{{ipracop.cop.position_desc }} 
+        </td>
+        <td>
+            {{ipracop.matched_by}}
+        </td>
+        <!--<td>
+            {{ipracop.matched_when}}
+        </td>-->
+        <td>
+            {% if ipracop.flag %}{{ ipracop.flag }}{% endif %}
+        </td>
+        <td>
+            <a href = "{{ipracop.id}}">Re-match</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
