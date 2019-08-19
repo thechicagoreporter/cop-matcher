@@ -1,3 +1,5 @@
+this isn't actively maintained. cop-matching code has been folded into our settlements content management system, which we haven't published yet.
+
 # cop-matcher
 Helps identify police officers named in lawsuits
 
