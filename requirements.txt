@@ -16,5 +16,5 @@ simplegeneric==0.8.1
 sqlparse==0.1.19
 traitlets==4.2.1
 unicodecsv==0.14.1
-wheel==0.26.0
+wheel==0.38.1
 zope.interface==4.1.3
